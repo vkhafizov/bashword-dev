@@ -241,6 +241,7 @@ header h1 {
   gap: 1rem;
   justify-content: center;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .level-select-button {
