@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="ba">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Башҡортса һүҙ уйыны</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="assets/styles/main.css">
+  
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-container">
+      <header>
+          <h1>Һүҙ уйыны</h1>
+      </header>
+      <div id="game">
+          <div id="board"></div>
+          <div id="keyboard"></div>
+      </div>
+  </div>
+  <script>
+    if (!localStorage.getItem('selectedLevel')) {
+        window.location.href = 'levels.html';
+    }
+  </script>
+  <script src="data/dictionary.js"></script>
+  <script src="data/keyboard-layout.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/keyboard.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+      if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js");
+      }
+  </script>
+</body>
+</html>

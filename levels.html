@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="ba">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Башҡортса һүҙ уйыны - Кимәл һайлау</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .levels-container {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .levels-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+        
+        .levels-grid {
+            display: grid;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .level-button {
+            background-color: white;
+            border: 2px solid var(--color-border);
+            padding: 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .level-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-correct);
+        }
+        
+        .level-button:active {
+            transform: translateY(1px);
+        }
+        
+        .level-name {
+            font-size: 1.5rem;
+            color: var(--color-text);
+        }
+        
+        .level-description {
+            font-size: 0.875rem;
+            color: var(--color-absent);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="levels-container">
+        <h1 class="levels-title">Кимәл һайлағыҙ</h1>
+        <div class="levels-grid">
+            <button class="level-button" data-level="1">
+                <div class="level-info">
+                    <div class="level-name">Еңел</div>
+                </div>
+            </button>
+            <button class="level-button" data-level="2">
+                <div class="level-info">
+                    <div class="level-name">Уртаса</div>
+                </div>
+            </button>
+            <button class="level-button" data-level="3">
+                <div class="level-info">
+                    <div class="level-name">Ҡатмарлы</div>
+                </div>
+            </button>
+            <button class="level-button" data-level="4">
+                <div class="level-info">
+                    <div class="level-name">Ауыр</div>
+                </div>
+            </button>
+            <button class="level-button" data-level="5">
+                <div class="level-info">
+                    <div class="level-name">Оҫта</div>
+                </div>
+            </button>
+        </div>
+    </div>
+    <script src="js/levels.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+:root {
+  --color-correct: #4ade80;
+  --color-present: #fbbf24;
+  --color-absent: #6b7280;
+  --color-background: #f8fafc;
+  --color-border: #e2e8f0;
+  --color-text: #1e293b;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --transition: all 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  line-height: 1.5;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-border);
+}
+
+header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 2.5rem;
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.tile {
+  width: 64px;
+  height: 64px;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.tile.correct {
+  background-color: var(--color-correct);
+  color: white;
+  border-color: var(--color-correct);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.tile.present {
+  background-color: var(--color-present);
+  color: white;
+  border-color: var(--color-present);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.tile.absent {
+  background-color: var(--color-absent);
+  color: white;
+  border-color: var(--color-absent);
+  opacity: 0.8;
+}
+
+#keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.key {
+  height: 52px;
+  min-width: 40px;
+  padding: 0 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--color-border);
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.key:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  background-color: #cbd5e1;
+}
+
+.key:active {
+  transform: translateY(1px);
+}
+
+.key-enter,
+.key-backspace {
+  min-width: 70px;
+  font-size: 0.9rem;
+  background-color: #cbd5e1;
+}
+
+.message {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-text);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  z-index: 1000;
+  box-shadow: var(--shadow-md);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translate(-50%, -20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .key {
+        min-width: 28px;
+        height: 48px;
+        padding: 0 6px;
+        font-size: 0.875rem;
+        border-radius: 6px;
+    }
+
+    .keyboard-row {
+        gap: 4px;
+    }
+
+    #keyboard {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: 16px 16px 0 0;
+        padding: 0.75rem;
+    }
+
+    #board {
+        margin-bottom: 180px;
+    }
+
+    .tile {
+        width: 56px;
+        height: 56px;
+        font-size: 1.75rem;
+        border-radius: 8px;
+    }
+}
+
+.key.correct {
+  background-color: var(--color-correct);
+  color: white;
+}
+
+.key.present {
+  background-color: var(--color-present);
+  color: white;
+}
+
+.key.absent {
+  background-color: var(--color-absent);
+  color: white;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.level-select-button {
+  
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.level-select-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.level-select-button:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 500px) {
+  .button-group {
+      flex-direction: column;
+  }
+  .continue-button,
+  .level-select-button {
+      width: 100%;
+  }
+}
