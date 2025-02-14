@@ -22,13 +22,21 @@ body {
   color: var(--color-text);
   max-width: 540px;
   margin: 0 auto;
-  padding: 1.5rem;
-  line-height: 1.5;
+  min-height: 100vh; /* Минимальная высота на весь экран */
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+#game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 header {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--color-border);
 }
@@ -40,11 +48,20 @@ header h1 {
   color: var(--color-text);
 }
 
+#game {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 #board {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  flex: 1;
 }
 
 .row {
@@ -54,14 +71,14 @@ header h1 {
 }
 
 .tile {
-  width: 64px;
-  height: 64px;
+  width: min(64px, 7vh);
+  height: min(64px, 7vh);
   border: 2px solid var(--color-border);
   border-radius: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: min(2rem, 3.5vh);
   font-weight: 700;
   text-transform: uppercase;
   transition: var(--transition);
@@ -95,6 +112,7 @@ header h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: auto;
   padding: 1rem;
   background-color: white;
   border-radius: 16px;
@@ -108,14 +126,14 @@ header h1 {
 }
 
 .key {
-  height: 52px;
-  min-width: 40px;
-  padding: 0 12px;
+  height: min(52px, 6vh);
+  min-width: min(40px, 5vh);
+  padding: 0 min(12px, 1.5vh);
   border: none;
   border-radius: 8px;
   background-color: var(--color-border);
   color: var(--color-text);
-  font-size: 1.125rem;
+  font-size: min(1.125rem, 2vh);
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;

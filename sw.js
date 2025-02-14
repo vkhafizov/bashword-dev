@@ -11,6 +11,7 @@ const ASSETS = [
   "/js/storage.js",
   "/js/results.js",
   "/js/levels.js",
+  "/js/header.js",
   "/data/dictionary.js",
   "/data/keyboard-layout.js",
   "/data/dictionary.txt",
