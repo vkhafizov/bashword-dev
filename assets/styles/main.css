@@ -1,87 +1,120 @@
 :root {
-  --color-correct: #4ade80;
-  --color-present: #fbbf24;
+  /* Modern color palette with soft, sophisticated tones */
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+  --color-correct: #22c55e;
+  --color-present: #f59e0b;
   --color-absent: #6b7280;
-  --color-background: #f8fafc;
-  --color-border: #e2e8f0;
-  --color-text: #1e293b;
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  --transition: all 0.2s ease;
+  
+  /* Neutral colors with more depth */
+  --color-background: #f0f9ff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #1e293b;
+  --color-border: #cbd5e1;
+  
+  /* Enhanced shadows and transitions */
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  --transition-fast: all 0.15s ease-in-out;
+  --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* Modern reset and base styles */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: 0;
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', sans-serif;
   background-color: var(--color-background);
-  color: var(--color-text);
-  max-width: 540px;
-  margin: 0 auto;
-  min-height: 100vh; /* Минимальная высота на весь экран */
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  max-width: 100%;
+  width: 100%;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  align-items: center;
+  padding: 0 1rem;
 }
 
+/* Container with max-width and centered content */
 #game-container {
-  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
+/* Modernized Header */
 header {
   text-align: center;
-  margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--color-border);
+  margin-bottom: 1rem;
 }
 
 header h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: var(--color-text);
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  background: linear-gradient(0deg, #00a86b, #0077be);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
 }
 
+/* Game Board Styling */
 #game {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  justify-content: center;
 }
 
 #board {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  margin-bottom: 1rem;
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.5rem;
   justify-content: center;
-  flex: 1;
+  width: 100%;
 }
 
 .row {
-  display: flex;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
   justify-content: center;
 }
 
 .tile {
-  width: min(64px, 7vh);
-  height: min(64px, 7vh);
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
+  aspect-ratio: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: min(2rem, 3.5vh);
+  font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
-  transition: var(--transition);
+  background-color: transparent;
+  border: 2px solid var(--color-border);
+  border-radius: 0.5rem;
+  transition: var(--transition-smooth);
   box-shadow: var(--shadow-sm);
 }
 
@@ -108,67 +141,103 @@ header h1 {
   opacity: 0.8;
 }
 
+/* Keyboard Styling */
 #keyboard {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.5rem;
   margin-top: auto;
-  padding: 1rem;
   background-color: white;
-  border-radius: 16px;
-  box-shadow: var(--shadow-md);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-lg);
 }
 
 .keyboard-row {
   display: flex;
   justify-content: center;
-  gap: 6px;
+  gap: 0.375rem;
 }
 
 .key {
-  height: min(52px, 6vh);
-  min-width: min(40px, 5vh);
-  padding: 0 min(12px, 1.5vh);
-  border: none;
-  border-radius: 8px;
+  flex: 1;
+  height: 3.5rem;
+  min-width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--color-border);
-  color: var(--color-text);
-  font-size: min(1.125rem, 2vh);
+  color: var(--color-text-secondary);
+  font-size: 1rem;
   font-weight: 600;
-  cursor: pointer;
   text-transform: uppercase;
-  transition: var(--transition);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
   box-shadow: var(--shadow-sm);
 }
 
 .key:hover {
-  transform: translateY(-1px);
+  background-color: color-mix(in srgb, var(--color-primary) 20%, var(--color-border));
+  transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  background-color: #cbd5e1;
 }
 
 .key:active {
   transform: translateY(1px);
+  box-shadow: var(--shadow-sm);
 }
 
 .key-enter,
 .key-backspace {
-  min-width: 70px;
-  font-size: 0.9rem;
-  background-color: #cbd5e1;
+  flex: 1.5;
+  background-color: color-mix(in srgb, var(--color-primary) 20%, white);
 }
 
+/* Button Group Styling */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.level-select-button {
+  flex: 1;
+  padding: 1rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-md);
+}
+
+.level-select-button:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 90%, black);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.level-select-button:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Message Styling */
 .message {
   position: fixed;
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: var(--color-text);
+  background-color: var(--color-text-primary);
   color: white;
   padding: 1rem 2rem;
-  border-radius: 12px;
+  border-radius: 1rem;
   z-index: 1000;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-lg);
   animation: slideIn 0.3s ease;
 }
 
@@ -183,44 +252,50 @@ header h1 {
   }
 }
 
-@media (max-width: 500px) {
-    body {
-        padding: 1rem;
-    }
-    
-    .key {
-        min-width: 28px;
-        height: 48px;
-        padding: 0 6px;
-        font-size: 0.875rem;
-        border-radius: 6px;
-    }
+/* Responsive Adjustments */
+@media (max-width: 480px) {
+  #game-container {
+    padding: 0.5rem;
+  }
 
-    .keyboard-row {
-        gap: 4px;
-    }
+  header h1 {
+    font-size: 2rem;
+  }
 
-    #keyboard {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        border-radius: 16px 16px 0 0;
-        padding: 0.75rem;
-    }
+  .tile {
+    font-size: 1.5rem;
+  }
 
-    #board {
-        margin-bottom: 180px;
-    }
+  .key {
+    height: 3rem;
+    font-size: 0.875rem;
+  }
 
-    .tile {
-        width: 56px;
-        height: 56px;
-        font-size: 1.75rem;
-        border-radius: 8px;
-    }
+  #keyboard {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 1rem 1rem 0 0;
+    padding: 0.5rem;
+    box-shadow: var(--shadow-lg);
+  }
+
+  #board {
+    margin-bottom: 250px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .level-select-button {
+    width: 100%;
+  }
 }
 
+/* Keyboard Key States */
 .key.correct {
   background-color: var(--color-correct);
   color: white;
@@ -234,41 +309,4 @@ header h1 {
 .key.absent {
   background-color: var(--color-absent);
   color: white;
-}
-
-.button-group {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
-}
-
-.level-select-button {
-  
-  border: none;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.level-select-button:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
-}
-
-.level-select-button:active {
-  transform: translateY(1px);
-}
-
-@media (max-width: 500px) {
-  .button-group {
-      flex-direction: column;
-  }
-  .continue-button,
-  .level-select-button {
-      width: 100%;
-  }
 }
