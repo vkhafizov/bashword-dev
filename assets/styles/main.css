@@ -214,9 +214,9 @@ header h1 {
     }
 
     .tile {
-        width: 56px;
-        height: 56px;
-        font-size: 1.75rem;
+        width: 12vw; /* ширина зависит от ширины экрана */
+        height: 12vw; /* высота зависит от ширины экрана */
+        font-size: 4vw;
         border-radius: 8px;
     }
 }
