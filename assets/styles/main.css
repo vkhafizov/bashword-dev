@@ -36,7 +36,7 @@ body {
 
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid var(--color-border);
 }
@@ -214,9 +214,9 @@ header h1 {
     }
 
     .tile {
-        width: 12vw; /* ширина зависит от ширины экрана */
-        height: 12vw; /* высота зависит от ширины экрана */
-        font-size: 4vw;
+        width: 12vw;
+        height: 12vw;
+        font-size: 1.75rem;
         border-radius: 8px;
     }
 }
