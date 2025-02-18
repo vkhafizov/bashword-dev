@@ -6,6 +6,5 @@
 ];
 
 const SPECIAL_KEYS = [
-  { id: "enter", text: "✓" },
   { id: "backspace", text: "⌫" }
 ];

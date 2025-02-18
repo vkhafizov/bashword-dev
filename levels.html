@@ -2,69 +2,24 @@
 <!DOCTYPE html>
 <html lang="ba">
 <head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-66MPW4GG8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-66MPW4GG8B');
+</script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Башҡортса һүҙ уйыны - Кимәл һайлау</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="assets/styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        .levels-container {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .levels-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-        }
-        
-        .levels-grid {
-            display: grid;
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-        
-        .level-button {
-            background-color: white;
-            border: 2px solid var(--color-border);
-            padding: 1.5rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 1.25rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .level-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--color-correct);
-        }
-        
-        .level-button:active {
-            transform: translateY(1px);
-        }
-        
-        .level-name {
-            font-size: 1.5rem;
-            color: var(--color-text);
-        }
-        
-        .level-description {
-            font-size: 0.875rem;
-            color: var(--color-absent);
-            margin-top: 0.5rem;
-        }
-    </style>
+   
 </head>
 <body>
     <div class="levels-container">
@@ -99,5 +54,8 @@
     </div>
     <script src="js/header.js"></script>
     <script src="js/levels.js"></script>
+    
+  <link rel="stylesheet" href="assets/styles/levels.css">
+  
 </body>
 </html>

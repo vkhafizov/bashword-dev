@@ -31,8 +31,13 @@ class Game {
         const savedState = GameStorage.load();
         if (savedState) {
             Object.assign(this, savedState);
+            // Восстанавливаем Map из массива
+            this.letterStates = new Map(savedState.letterStates || []);
+            // Сообщаем клавиатуре о восстановленных состояниях
+            this.emit('letterStatesUpdated', { letterStates: this.letterStates });
         } else {
             this.word = DICTIONARY.getRandomWord();
+            this.letterStates = new Map();
         }
         this.render();
         this.emit('gameInit', { word: this.word });
@@ -76,7 +81,6 @@ class Game {
         }
         if (!DICTIONARY.isValidWord(this.currentAttempt)) {
             this.showMessage("Һүҙлектә юҡ!", "error");
-            this.emit('invalidWord', { attempt: this.currentAttempt });
             return;
         }
     
@@ -114,30 +118,6 @@ class Game {
             attempt: this.analyzeAttempt(this.attempts[this.attempts.length - 1])
         });
     
-    
-        if (this.currentAttempt.toLowerCase() === this.word.toLowerCase()) {
-            this.isGameOver = true;
-            this.showMessage("Дөрөҫ!", "success");
-            this.emit('gameWon', { attempts: this.attempts.length });
-            setTimeout(() => {
-                window.location.href = `result.html?win=true&word=${this.word}&attempts=${this.attempts.length}&time=${timeTaken}`;
-            }, 1500);
-        } else if (this.attempts.length >= this.maxAttempts) {
-            this.isGameOver = true;
-            this.showMessage(`Уйын бөттө!`, "info");
-            this.emit('gameLost', { word: this.word });
-            setTimeout(() => {
-                const historyParam = encodeURIComponent(JSON.stringify(this.attempts));
-                window.location.href = `result.html?win=${this.currentAttempt.toLowerCase() === this.word.toLowerCase()}&word=${this.word}&attempts=${this.attempts.length}&time=${timeTaken}&history=${historyParam}`;
-            }, 1500);
-        }
-    
-        this.currentAttempt = "";
-        this.saveState();
-        this.render();
-        this.emit('attemptSubmitted', { 
-            attempt: this.analyzeAttempt(this.attempts[this.attempts.length - 1])
-        });
     }
 
     analyzeAttempt(attempt) {
@@ -157,29 +137,25 @@ class Game {
         return 'absent';
     }
 
-    showMessage(text, type = 'info') {
-        const message = document.createElement("div");
-        message.className = `message message-${type}`;
-        message.textContent = text;
-        
-        // Remove existing messages
-        document.querySelectorAll('.message').forEach(msg => msg.remove());
-        
-        document.body.appendChild(message);
-        setTimeout(() => message.remove(), 2500);
-        this.emit('messageShown', { text, type });
-    }
+   showMessage(text, type = 'info') {
+    const message = document.createElement("div");
+    message.className = `message message-${type}`;
+    message.textContent = text;
+    document.body.appendChild(message);
+    setTimeout(() => message.remove(), 2500);
+}
 
-    saveState() {
-        const state = {
-            word: this.word,
-            attempts: this.attempts,
-            currentAttempt: this.currentAttempt,
-            isGameOver: this.isGameOver
-        };
-        GameStorage.save(state);
-        this.emit('stateSaved', state);
-    }
+saveState() {
+    const state = {
+        word: this.word,
+        attempts: this.attempts,
+        currentAttempt: this.currentAttempt,
+        isGameOver: this.isGameOver,
+        letterStates: Array.from(this.letterStates.entries()) // Сохраняем состояния букв
+    };
+    GameStorage.save(state);
+    this.emit('stateSaved', state);
+}
 
     render() {
         const board = document.getElementById("board");
@@ -255,4 +231,3 @@ class Game {
         this.emit('gameReset', { word: this.word });
     }
 }
-

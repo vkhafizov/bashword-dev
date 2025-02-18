@@ -1,10 +1,16 @@
-﻿const CACHE_NAME = "bashword-v4";
+﻿const CACHE_NAME = "bashword-v0.11.0";
 const ASSETS = [
   "/",
   "/index.html",
   "/result.html",
   "/levels.html",
   "/assets/styles/main.css",
+  "/assets/styles/help.css",
+  "/assets/styles/game/game.css",
+  "/assets/styles/game/board.css",
+  "/assets/styles/game/keyboard.css",
+  "/assets/styles/result.css",
+  "/assets/styles/levels.css",
   "/js/app.js",
   "/js/game.js",
   "/js/keyboard.js",

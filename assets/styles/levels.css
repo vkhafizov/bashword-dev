@@ -1,0 +1,74 @@
+.levels-container {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .levels-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+  }
+  
+  .levels-grid {
+    display: grid;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .level-button {
+    background-color: white;
+    border: 2px solid var(--color-border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .level-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-correct);
+  }
+  
+  .level-button:active {
+    transform: translateY(1px);
+  }
+  
+  .level-name {
+    font-size: 1.5rem;
+    color: var(--color-text);
+  }
+  
+  .level-description {
+    font-size: 0.875rem;
+    color: var(--color-absent);
+    margin-top: 0.5rem;
+  }
+  
+  .level-select-button {
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .level-select-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .level-select-button:active {
+    transform: translateY(1px);
+  }
