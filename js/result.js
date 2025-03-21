@@ -118,7 +118,7 @@ class Results {
     updateUI() {
         // Обновляем основные элементы UI
         document.getElementById('result-message').textContent = 
-            this.resultData.isWin ? 'Еңеү!' : 'Уйын бөттө';
+            this.resultData.isWin ? 'Афарин!' : 'Ярай инде, \nҡайғырма';
         document.getElementById('word-reveal').textContent = 
             `Һүҙ: ${this.resultData.word}`;
         document.getElementById('attempts-count').textContent = 
