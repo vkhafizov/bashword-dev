@@ -41,8 +41,12 @@
   color: var(--color-text);
   }
   
-  @media (max-width: 500px) {
+@media (max-width: 500px) {
     body {
       padding: 0.5rem;
     }
-  }
+    
+    header {
+      padding-top: 34px; 
+    }
+}
