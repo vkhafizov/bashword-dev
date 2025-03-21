@@ -20,68 +20,45 @@ function shareResult() {
     // Создаем скриншот результатов
     const resultContent = document.getElementById('result-content');
     
-    // Используем html2canvas если доступен, иначе пробуем Web Share API
+    // Определяем, находимся ли мы в Telegram
+    const isTelegram = navigator.userAgent.indexOf('Telegram') !== -1;
+    
+    // Используем html2canvas если доступен
     if (typeof html2canvas !== 'undefined') {
         html2canvas(resultContent).then(canvas => {
             canvas.toBlob(blob => {
-                if (navigator.share && blob) {
-                    // Шарим файл и текст
+                if (navigator.share && blob && !isTelegram) {
+                    // Стандартный шеринг для обычных браузеров
                     navigator.share({
                         title: 'Башҡортса һүҙ уйыны',
                         text: shareText,
                         files: [new File([blob], 'bashword-result.png', { type: 'image/png' })]
                     }).catch(error => {
-                        fallbackShare(canvas, shareText);
+                        // Если произошла ошибка, предлагаем поделиться через Telegram
+                        shareThroughTelegram(shareText);
                     });
+                } else if (isTelegram) {
+                    // Если мы в Telegram, используем прямую ссылку для шеринга
+                    shareThroughTelegram(shareText);
                 } else {
-                    fallbackShare(canvas, shareText);
+                    // Если нет Web Share API, предлагаем поделиться через Telegram
+                    shareThroughTelegram(shareText);
                 }
             });
         });
     } else {
-        // Если html2canvas не загружен, используем только текст
-        if (navigator.share) {
-            navigator.share({
-                title: 'Башҡортса һүҙ уйыны',
-                text: shareText
-            }).catch(error => {
-                copyToClipboard(shareText);
-            });
-        } else {
-            copyToClipboard(shareText);
-        }
+        // Если html2canvas не загружен, предлагаем поделиться через Telegram
+        shareThroughTelegram(shareText);
     }
 }
 
-// Запасной метод шеринга - открываем изображение и копируем текст
-function fallbackShare(canvas, shareText) {
-    // Открываем изображение в новой вкладке для сохранения
-    const imgUrl = canvas.toDataURL('image/png');
-    const imgTab = window.open();
-    imgTab.document.write(`<img src="${imgUrl}" alt="Башҡортса һүҙ уйыны результаты">`);
+// Функция для шеринга через Telegram
+function shareThroughTelegram(text) {
+    const encodedText = encodeURIComponent(text);
+    const telegramUrl = `https://t.me/share/url?url=&text=${encodedText}`;
     
-    // Копируем текст в буфер обмена
-    copyToClipboard(shareText);
-    
-    alert('Изображение открыто в новой вкладке. Текст скопирован в буфер обмена!');
-}
-
-// Функция для копирования текста в буфер обмена
-function copyToClipboard(text) {
-    // Создаем временный элемент textarea
-    const textarea = document.createElement('textarea');
-    textarea.value = text;
-    document.body.appendChild(textarea);
-    
-    // Выделяем и копируем текст
-    textarea.select();
-    document.execCommand('copy');
-    
-    // Удаляем временный элемент
-    document.body.removeChild(textarea);
-    
-    // Показываем сообщение пользователю
-    alert('Текст скопирован в буфер обмена! Теперь вы можете его вставить и поделиться.');
+    // Открываем окно для шеринга через Telegram
+    window.open(telegramUrl, '_blank');
 }
 
 class Results {
