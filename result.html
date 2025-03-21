@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ba">
 <head>
 
@@ -19,6 +19,30 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/result.css">
+    <style>
+     .share-button {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            padding: 1rem 2rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: none;
+        }
+
+        .share-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            background-color: #3b82f6;
+        }
+
+        .share-button:active {
+            transform: translateY(1px);
+        }
+    </style>
 </head>
 <body>
     <div class="result-container">
@@ -42,6 +66,7 @@
             <div class="button-group">
                 <button class="level-select-button" onclick="selectLevel()">Кимәл һайлау</button>
                 <button class="continue-button" onclick="startNewGame()">Яңы уйын</button>
+                <button class="share-button" id="share-button" onclick="shareResult()">Дустарға маҡтанырға</button>
             </div>
         </div>
     </div>
