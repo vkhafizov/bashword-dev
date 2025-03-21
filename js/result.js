@@ -9,6 +9,48 @@ function selectLevel() {
     window.location.href = 'levels.html';
 }
 
+function shareResult() {
+    const word = document.getElementById('word-reveal').textContent.replace('Һүҙ: ', '');
+    const attempts = document.getElementById('attempts-count').textContent;
+    const time = document.getElementById('time-taken').textContent;
+    
+    // Текст для шеринга
+    const shareText = `Башҡортса һүҙ уйынын уйнаным!\n\nҺүҙ: ${word}\nТырышыу: ${attempts}\nВаҡыт: ${time}\n\nУйнап ҡарағыҙ: https://bashword.ru`;
+    
+    // Пробуем использовать Web Share API, если доступен
+    if (navigator.share) {
+        navigator.share({
+            title: 'Башҡортса һүҙ уйыны',
+            text: shareText
+        }).catch(error => {
+            console.error('Шеринг хатаһы:', error);
+            // Запасной вариант - копирование в буфер обмена
+            copyToClipboard(shareText);
+        });
+    } else {
+        // Резервный метод - копирование в буфер обмена
+        copyToClipboard(shareText);
+    }
+}
+
+// Функция для копирования текста в буфер обмена
+function copyToClipboard(text) {
+    // Создаем временный элемент textarea
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    
+    // Выделяем и копируем текст
+    textarea.select();
+    document.execCommand('copy');
+    
+    // Удаляем временный элемент
+    document.body.removeChild(textarea);
+    
+    // Показываем сообщение пользователю
+    alert('Текст скопирован в буфер обмена! Теперь вы можете его вставить и поделиться.');
+}
+
 class Results {
     constructor() {
         this.urlParams = new URLSearchParams(window.location.search);
@@ -26,6 +68,11 @@ class Results {
         this.updateUI();
         this.updateGameStats();
         this.renderAttemptsHistory();
+        
+        // Показываем кнопку шеринга только если игра выиграна
+        if (this.resultData.isWin) {
+            document.getElementById('share-button').style.display = 'block';
+        }
     }
 
     renderAttemptsHistory() {
