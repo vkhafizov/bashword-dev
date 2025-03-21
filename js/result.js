@@ -15,22 +15,55 @@ function shareResult() {
     const time = document.getElementById('time-taken').textContent;
     
     // Текст для шеринга
-    const shareText = `Башҡортса һүҙ уйынын уйнаным!\n\nҺүҙ: ${word}\nТырышыу: ${attempts}\nВаҡыт: ${time}\n\nУйнап ҡарағыҙ: https://bashword.ru`;
+    const shareText = `Башҡортса һүҙ уйынын уйнаным!\n\nҺүҙ: ${word}\nТырышыу: ${attempts}\nВаҡыт: ${time}\n\nУйнап ҡарағыҙ: https://t.me/bashword_dev_bot/bashword_dev`;
     
-    // Пробуем использовать Web Share API, если доступен
-    if (navigator.share) {
-        navigator.share({
-            title: 'Башҡортса һүҙ уйыны',
-            text: shareText
-        }).catch(error => {
-            console.error('Шеринг хатаһы:', error);
-            // Запасной вариант - копирование в буфер обмена
-            copyToClipboard(shareText);
+    // Создаем скриншот результатов
+    const resultContent = document.getElementById('result-content');
+    
+    // Используем html2canvas если доступен, иначе пробуем Web Share API
+    if (typeof html2canvas !== 'undefined') {
+        html2canvas(resultContent).then(canvas => {
+            canvas.toBlob(blob => {
+                if (navigator.share && blob) {
+                    // Шарим файл и текст
+                    navigator.share({
+                        title: 'Башҡортса һүҙ уйыны',
+                        text: shareText,
+                        files: [new File([blob], 'bashword-result.png', { type: 'image/png' })]
+                    }).catch(error => {
+                        fallbackShare(canvas, shareText);
+                    });
+                } else {
+                    fallbackShare(canvas, shareText);
+                }
+            });
         });
     } else {
-        // Резервный метод - копирование в буфер обмена
-        copyToClipboard(shareText);
+        // Если html2canvas не загружен, используем только текст
+        if (navigator.share) {
+            navigator.share({
+                title: 'Башҡортса һүҙ уйыны',
+                text: shareText
+            }).catch(error => {
+                copyToClipboard(shareText);
+            });
+        } else {
+            copyToClipboard(shareText);
+        }
     }
+}
+
+// Запасной метод шеринга - открываем изображение и копируем текст
+function fallbackShare(canvas, shareText) {
+    // Открываем изображение в новой вкладке для сохранения
+    const imgUrl = canvas.toDataURL('image/png');
+    const imgTab = window.open();
+    imgTab.document.write(`<img src="${imgUrl}" alt="Башҡортса һүҙ уйыны результаты">`);
+    
+    // Копируем текст в буфер обмена
+    copyToClipboard(shareText);
+    
+    alert('Изображение открыто в новой вкладке. Текст скопирован в буфер обмена!');
 }
 
 // Функция для копирования текста в буфер обмена
@@ -69,9 +102,9 @@ class Results {
         this.updateGameStats();
         this.renderAttemptsHistory();
         
-        // Показываем кнопку шеринга только если игра выиграна
-        if (this.resultData.isWin) {
-            document.getElementById('share-button').style.display = 'block';
+        // Проверяем результат и скрываем кнопку шеринга при поражении
+        if (!this.resultData.isWin) {
+            document.getElementById('share-container').style.display = 'none';
         }
     }
 
