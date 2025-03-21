@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ba">
 <head>
+    <!-- Добавляем библиотеку html2canvas для создания скриншотов -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-66MPW4GG8B"></script>
@@ -20,7 +22,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/result.css">
     <style>
-     .share-button {
+        .share-container {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .share-button {
             background-color: transparent;
             color: var(--color-text);
             border: 2px solid var(--color-border);
@@ -30,17 +37,25 @@
             border-radius: 12px;
             cursor: pointer;
             transition: var(--transition);
-            display: none;
+            width: 100%;
+            max-width: 300px;
         }
 
         .share-button:hover {
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
-            background-color: #3b82f6;
+            border-color: var(--color-correct);
         }
 
         .share-button:active {
             transform: translateY(1px);
+        }
+        
+        @media (max-width: 500px) {
+            .share-button {
+                font-size: 1.125rem;
+                padding: 0.75rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -63,10 +78,12 @@
                     <div class="stat-label">Ваҡыт</div>
                 </div>
             </div>
+            <div class="share-container" id="share-container" style="display: none; margin-bottom: 1.5rem;">
+                <button class="share-button" id="share-button" onclick="shareResult()">Дустарға маҡтанырға</button>
+            </div>
             <div class="button-group">
                 <button class="level-select-button" onclick="selectLevel()">Кимәл һайлау</button>
                 <button class="continue-button" onclick="startNewGame()">Яңы уйын</button>
-                <button class="share-button" id="share-button" onclick="shareResult()">Дустарға маҡтанырға</button>
             </div>
         </div>
     </div>
