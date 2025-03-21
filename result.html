@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="ba">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-66MPW4GG8B"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-66MPW4GG8B');
+    </script>
     <!-- Добавляем библиотеку html2canvas для создания скриншотов -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-66MPW4GG8B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-66MPW4GG8B');
-</script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +24,7 @@
         .share-container {
             text-align: center;
             width: 100%;
+            margin-bottom: 1.5rem;
         }
         
         .share-button {
@@ -78,7 +78,7 @@
                     <div class="stat-label">Ваҡыт</div>
                 </div>
             </div>
-            <div class="share-container" id="share-container" style="display: none; margin-bottom: 1.5rem;">
+            <div class="share-container" id="share-container">
                 <button class="share-button" id="share-button" onclick="shareResult()">Дустарға маҡтанырға</button>
             </div>
             <div class="button-group">
