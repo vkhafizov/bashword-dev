@@ -7,7 +7,7 @@ class HelpModal {
     // Create help button
     const helpButton = document.createElement('button');
     helpButton.className = 'help-button';
-    helpButton.innerHTML = '<img src="assets/pics/question.png" alt="Ярҙам" style="width: 24px; height: 24px;">';
+    helpButton.innerHTML = '<img src="assets/pics/question.svg" alt="Ярҙам" style="width: 24px; height: 24px;">';
     helpButton.setAttribute('aria-label', 'Уйын ҡағиҙәләре');
     document.body.appendChild(helpButton);
 
