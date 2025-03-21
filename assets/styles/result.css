@@ -30,7 +30,7 @@
 .level-select-button
  {
     background-color: #F7F7FA;
-    color: white;
+    color: var(--color-text);
     border: none;
     padding: 1rem 2rem;
     font-size: 1.25rem;
