@@ -23,7 +23,7 @@
         top: 10%;
         left: 50%;
         transform: translateX(-50%);
-        background-color: var(--color-text);
+        background-color: #F84B5F;
         color: white;
         padding: 1rem 2rem;
         border-radius: 12px;
