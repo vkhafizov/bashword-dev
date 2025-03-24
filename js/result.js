@@ -15,7 +15,7 @@ function shareResult() {
     const time = document.getElementById('time-taken').textContent;
     
     // Текст для шеринга
-    const shareText = `Башҡортса һүҙ уйынын уйнаным!\n\nҺүҙ: ${word}\nТырышыу: ${attempts}\nВаҡыт: ${time}\n\nУйнап ҡарағыҙ: https://t.me/bashword_dev_bot/bashword_dev`;
+    const shareText = `Башҡортса һүҙ уйынын уйнаным!\n\nҺүҙ: ${word}\nТырышыуҙар: ${attempts}\nВаҡыт: ${time}\n\nУйнап ҡарағыҙ: https://t.me/bashword_dev_bot/bashword_dev`;
     
     // Создаем скриншот результатов
     const resultContent = document.getElementById('result-content');
@@ -125,6 +125,14 @@ class Results {
             this.resultData.attempts || '0';
         document.getElementById('time-taken').textContent = 
             this.resultData.timeTaken ? Math.floor(this.resultData.timeTaken / 1000) + 'с' : '0с';
+
+        // Добавляем соответствующую иконку в зависимости от результата
+        const iconElement = document.getElementById('result-icon');
+        if (this.resultData.isWin) {
+            iconElement.innerHTML = '<img src="assets/pics/glad.svg" alt="Еңеү!" width="89" height="89">';
+        } else {
+            iconElement.innerHTML = '<img src="assets/pics/sad.svg" alt="Еңелеү" width="89" height="89">';
+        }
     }
 
     updateGameStats() {
