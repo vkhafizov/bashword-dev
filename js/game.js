@@ -80,7 +80,7 @@ class Game {
             return;
         }
         if (!DICTIONARY.isValidWord(this.currentAttempt)) {
-            this.showMessage("Һүҙлектә юҡ!", "error");
+            this.showMessage("Ундай һүҙ юҡ!", "error");
             return;
         }
     
