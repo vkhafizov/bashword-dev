@@ -97,18 +97,18 @@ class Game {
     
         if (this.currentAttempt.toLowerCase() === this.word.toLowerCase()) {
             this.isGameOver = true;
-            this.showMessage("Дөрөҫ!", "success");
+           // this.showMessage("Дөрөҫ!", "success");
             this.emit('gameWon', { attempts: this.attempts.length });
             setTimeout(() => {
                 window.location.href = `result.html?win=true&word=${this.word}&attempts=${this.attempts.length}&time=${timeTaken}&history=${historyParam}`;
-            }, 1500);
+            }, 1000);
         } else if (this.attempts.length >= this.maxAttempts) {
             this.isGameOver = true;
-            this.showMessage(`Уйын бөттө!`, "info");
+            //this.showMessage(`Уйын бөттө!`, "info");
             this.emit('gameLost', { word: this.word });
             setTimeout(() => {
                 window.location.href = `result.html?win=false&word=${this.word}&attempts=${this.attempts.length}&time=${timeTaken}&history=${historyParam}`;
-            }, 1500);
+            }, 1000);
         }
     
         this.currentAttempt = "";
