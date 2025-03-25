@@ -153,14 +153,14 @@ progressBarContainer.appendChild(progressLine);
 // Добавляем заполненную часть линии
 const progressFill = document.createElement('div');
 progressFill.className = 'progress-fill';
-progressFill.style.width = prevLevel > 0 ? `${50 + (progressPercent / 2)}%` : `${progressPercent}%`;
+progressFill.style.width = `${progressPercent}%`;
 progressBarContainer.appendChild(progressFill);
 
 // Левый кружок (предыдущий уровень)
 const leftCircleContainer = document.createElement('div');
 leftCircleContainer.className = 'circle-container';
 const leftCircle = document.createElement('div');
-leftCircle.className = prevLevel > 0 ? 'progress-circle filled' : 'progress-circle';
+leftCircle.className = 'progress-circle filled';
 leftCircle.textContent = prevLevel > 0 ? (prevLevel*25) : '0';
 leftCircleContainer.appendChild(leftCircle);
 progressBarContainer.appendChild(leftCircleContainer);
