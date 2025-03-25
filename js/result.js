@@ -167,7 +167,7 @@ const leftCircleContainer = document.createElement('div');
 leftCircleContainer.className = 'circle-container';
 const leftCircle = document.createElement('div');
 leftCircle.className = 'progress-circle filled';
-leftCircle.textContent = prevLevel > 0 ? prevLevel : '0';
+leftCircle.textContent = prevLevel > 0 ? (prevLevel*25) : '0';
 leftCircleContainer.appendChild(leftCircle);
 progressBarContainer.appendChild(leftCircleContainer);
 
@@ -176,7 +176,7 @@ const middleCircleContainer = document.createElement('div');
 middleCircleContainer.className = 'circle-container';
 const middleCircle = document.createElement('div');
 middleCircle.className = 'progress-circle current';
-middleCircle.textContent = currentLevel;
+middleCircle.textContent = currentLevel*25;
 middleCircleContainer.appendChild(middleCircle);
 progressBarContainer.appendChild(middleCircleContainer);
 
@@ -185,7 +185,7 @@ const rightCircleContainer = document.createElement('div');
 rightCircleContainer.className = 'circle-container';
 const rightCircle = document.createElement('div');
 rightCircle.className = 'progress-circle';
-rightCircle.textContent = currentLevel < 10 ? nextLevel : '∞';
+rightCircle.textContent = currentLevel < 10 ? (nextLevel*25) : '∞';
 rightCircleContainer.appendChild(rightCircle);
 progressBarContainer.appendChild(rightCircleContainer);
 
