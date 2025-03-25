@@ -133,6 +133,66 @@ class Results {
         } else {
             iconElement.innerHTML = '<img src="assets/pics/sad.svg" alt="Еңелеү" width="89" height="89">';
         }
+
+        // Получаем статистику
+const statsJson = localStorage.getItem('gameStats');
+const stats = statsJson ? JSON.parse(statsJson) : { gamesWon: 0 };
+const currentLevel = parseInt(localStorage.getItem('selectedLevel') || '1');
+const wordsGuessed = stats.gamesWon || 0;
+
+// Рассчитываем прогресс
+const prevLevel = currentLevel - 1;
+const nextLevel = currentLevel + 1;
+const prevThreshold = prevLevel * 25;
+const nextThreshold = currentLevel * 25;
+const progressPercent = Math.min(100, ((wordsGuessed - prevThreshold) / (nextThreshold - prevThreshold)) * 100);
+
+// Создаем прогресс-бар
+const progressBarContainer = document.createElement('div');
+progressBarContainer.className = 'progress-bar';
+
+// Добавляем линию прогресса
+const progressLine = document.createElement('div');
+progressLine.className = 'progress-line';
+progressBarContainer.appendChild(progressLine);
+
+// Добавляем заполненную часть линии
+const progressFill = document.createElement('div');
+progressFill.className = 'progress-fill';
+progressFill.style.width = `${progressPercent}%`;
+progressBarContainer.appendChild(progressFill);
+
+// Левый кружок (предыдущий уровень)
+const leftCircleContainer = document.createElement('div');
+leftCircleContainer.className = 'circle-container';
+const leftCircle = document.createElement('div');
+leftCircle.className = 'progress-circle filled';
+leftCircle.textContent = prevLevel > 0 ? prevLevel : '0';
+leftCircleContainer.appendChild(leftCircle);
+progressBarContainer.appendChild(leftCircleContainer);
+
+// Средний кружок (текущий уровень)
+const middleCircleContainer = document.createElement('div');
+middleCircleContainer.className = 'circle-container';
+const middleCircle = document.createElement('div');
+middleCircle.className = 'progress-circle current';
+middleCircle.textContent = currentLevel;
+middleCircleContainer.appendChild(middleCircle);
+progressBarContainer.appendChild(middleCircleContainer);
+
+// Правый кружок (следующий уровень)
+const rightCircleContainer = document.createElement('div');
+rightCircleContainer.className = 'circle-container';
+const rightCircle = document.createElement('div');
+rightCircle.className = 'progress-circle';
+rightCircle.textContent = currentLevel < 10 ? nextLevel : '∞';
+rightCircleContainer.appendChild(rightCircle);
+progressBarContainer.appendChild(rightCircleContainer);
+
+// Вставляем прогресс-бар после сообщения результата
+const resultMessage = document.getElementById('result-message');
+resultMessage.after(progressBarContainer);
+        
     }
 
     updateGameStats() {
