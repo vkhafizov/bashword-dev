@@ -1,0 +1,58 @@
+.progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto;
+  position: relative;
+  width: 80%;
+  max-width: 300px;
+}
+
+.progress-line {
+  position: absolute;
+  height: 4px;
+  background-color: var(--color-border);
+  width: 100%;
+  z-index: 1;
+}
+
+.progress-fill {
+  position: absolute;
+  height: 4px;
+  background-color: var(--color-correct);
+  left: 0;
+  z-index: 2;
+}
+
+.progress-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--color-border);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+}
+
+.progress-circle.filled {
+  border-color: var(--color-correct);
+  background-color: var(--color-correct);
+  color: white;
+}
+
+.progress-circle.current {
+  border-color: var(--color-correct);
+  color: var(--color-correct);
+}
+
+.circle-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
