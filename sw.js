@@ -3,7 +3,6 @@ const ASSETS = [
   "/",
   "/index.html",
   "/result.html",
-  "/levels.html",
   "/assets/styles/main.css",
   "/assets/styles/help.css",
   "/assets/styles/game/game.css",

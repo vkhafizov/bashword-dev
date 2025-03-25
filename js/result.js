@@ -3,12 +3,6 @@ function startNewGame() {
     window.location.href = 'index.html';
 }
 
-function selectLevel() {
-    localStorage.removeItem('gameState');
-    localStorage.removeItem('selectedLevel');
-    window.location.href = 'levels.html';
-}
-
 function shareResult() {
     const word = document.getElementById('word-reveal').textContent.replace('Һүҙ: ', '');
     const attempts = document.getElementById('attempts-count').textContent;
@@ -137,7 +131,7 @@ class Results {
         // Получаем статистику
 const statsJson = localStorage.getItem('gameStats');
 const stats = statsJson ? JSON.parse(statsJson) : { gamesWon: 0 };
-const currentLevel = parseInt(localStorage.getItem('selectedLevel') || '1');
+const currentLevel = DICTIONARY.determineUserLevel ? DICTIONARY.determineUserLevel() : 1;
 const wordsGuessed = stats.gamesWon || 0;
 
 // Рассчитываем прогресс
