@@ -72,3 +72,25 @@
               z-index: 100;
             }
             
+      
+            
+  .home-button {
+              position: fixed;
+              top: 20px;
+              left: 20px;
+              width: 40px;
+              height: 40px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              text-decoration: none;
+              z-index: 100;
+              transition: all 0.2s ease;
+              background: transparent;
+              border: none;
+              padding: 0;
+            }
+            
+            .home-button:hover {
+              transform: translateY(-2px);
+            }

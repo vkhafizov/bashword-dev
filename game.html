@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ba">
+<head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-66MPW4GG8B"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-66MPW4GG8B');
+</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Башҡортса һүҙ уйыны</title>
+  <link rel="manifest" href="manifest.json">
+  
+  <link rel="stylesheet" href="assets/styles/game/game.css">
+  <link rel="stylesheet" href="assets/styles/game/board.css">
+  <link rel="stylesheet" href="assets/styles/game/keyboard.css">
+  <link rel="stylesheet" href="assets/styles/main.css">
+  <link rel="stylesheet" href="assets/styles/help.css">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="game-container">
+      <div id="game">
+          <div id="board"></div>
+          <div id="keyboard"></div>
+      </div>
+  </div>
+
+  <script src="js/header.js"></script>
+  <script src="data/dictionary.js"></script>
+  <script src="data/keyboard-layout.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/keyboard.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+      if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js");
+      }
+  </script>
+<script src="js/help.js"></script>
+  
+<a href="#" class="result-button"><img src="assets/pics/flag.svg" alt="Флаг" style="width: 24px; height: 24px;"></a>
+  
+</body>
+</html>
